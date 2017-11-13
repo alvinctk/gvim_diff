@@ -16,7 +16,7 @@ In terminal:
 
 To put in your alias file: 
     
-    hdiff(){
+    hdiff() {
          /usr/local/bin/vim -d $1 $2 \
           -c ":TOhtml" \
           -c ":saveas! $(basename $2).diff.html" \
@@ -24,11 +24,11 @@ To put in your alias file:
     }
 
 
-Note: "\" is the end of line
+Note: "\\" is the end of line
 
 or put it in one line: 
 
-       hdiff(){  /usr/local/bin/vim -d $1 $2 -c ":TOhtml" -c ":saveas! $(basename $2).diff.html" -c ":qall!"; }
+       hdiff() {  /usr/local/bin/vim -d $1 $2 -c ":TOhtml" -c ":saveas! $(basename $2).diff.html" -c ":qall!"; }
 
 ## To use gvim/vim diff instead of SVN diff
 File: svn_gvimdiff
