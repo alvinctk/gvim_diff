@@ -5,6 +5,21 @@ View diff of each files (in vertial split) in gvim/vim diff mode.
 And, to store the diff of each files in .diff.html extension
 Note: Color scheme of the html file is based on your colorscheme in .vimrc file.
 
+## Vim Keyboard Commands
+
+To navigate in diff mode in vim:
+
+ - do - Get changes from other window into the current window.
+ - dp - Put the changes from current window into the other window. 
+ - ]c - Jump to the next change.
+ - [c - Jump to the previous change.
+
+Without using diff command from terminal:
+
+  - In vim, load files via either vertical (:vs) or horizontal (:sp) split
+  - :diffthis to diff files from this window of files in the split.
+  - :diffoff to turn off diff mode.
+
 ## 1 liner to use vim to store diff files in html.
 In terminal:
 
