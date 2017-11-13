@@ -46,19 +46,19 @@ or put it in one line:
        hdiff() {  /usr/local/bin/vim -d $1 $2 -c ":TOhtml" -c ":saveas! $(basename $2).diff.html" -c ":qall!"; }
 
 ## To use gvim/vim diff instead of SVN diff
+
 File: svn_gvimdiff
 
 Retrieve files
 
-   git clone https://github.com/alvinctk/gvim_diff.git
+    git clone https://github.com/alvinctk/gvim_diff.git
 
 Updated path in svn_gvimdiff script:
 
-       vim_path="/usr/bin/vim"
-       to 
-       vim_path="/path/to/vim"
-  
-In terminal,
+      vim_path="/path/to/vim"
+      default: vim_path="/usr/bin/vim"
+
+Make script executable:,
 
      chmod 755 /path/to/svn_gvimdiff 
 
@@ -76,7 +76,7 @@ Or
           svn diff --diff-cmd /path/to/svn_gvimdiff
 
 ## To use gvim/vim diff in git
-To add soon.
+TTo add soon.
 
 
 
