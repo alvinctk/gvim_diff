@@ -6,16 +6,20 @@ And, to store the diff of each files in .diff.html extension
 Note: Color scheme of the html file is based on your colorscheme in .vimrc file.
 
 ## 1 liner to use vim to store diff files in html.
-In terminal: 
+In terminal:
+
      /usr/local/bin/vim -d $1 $2 -c ":TOhtml" -c ":saveas! $(basename $2).diff.html" -c ":qall!"
+
 - $1 (or ${6} in SVN) is WAS file.
 - SVN WAS FILE FORMAT [folder]/.svn/text-base/[file].svn-base
 - $2 is IS file. 
 
 To put in your alias file: 
 After '\' is the end of line
+
 hdiff(){
-  /usr/local/bin/vim -d $1 $2 \
+
+    /usr/local/bin/vim -d $1 $2 \
     -c ":TOhtml" \
     -c ":saveas! $(basename $2).diff.html" \
     -c ":qall!";
