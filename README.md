@@ -15,14 +15,14 @@ In terminal:
 - $2 is IS file. 
 
 To put in your alias file: 
-After '\' is the end of line
-
-hdiff(){
-    /usr/local/bin/vim -d $1 $2 \
-    -c ":TOhtml" \
-    -c ":saveas! $(basename $2).diff.html" \
-    -c ":qall!";
+    
+    hdiff(){
+         /usr/local/bin/vim -d $1 $2 \\
+          -c ":TOhtml" \
+          -c ":saveas! $(basename $2).diff.html" \\
+          -c ":qall!";
 }
+Note: "\" is the end of line
 
 or put it in one line: 
 
