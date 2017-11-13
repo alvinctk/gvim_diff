@@ -1,0 +1,60 @@
+#!/bin/bash
+
+epoch_time="$(date +%s)"
+vim_servername=""
+servername_file=diffserver.txt
+#epoch_file=epoch.txt
+
+# First time to create diffserver txt 
+if [ ! -f "$servername_file" ]; then \
+    vim_servername="DIFFSERVER"$epoch_time""
+    touch "$servername_file"
+    echo "$vim_servername" > "$servername_file"
+fi 
+
+# Retrieve server name
+if [ -f "$servername_file" ]; then \
+    vim_servername=$(cat "$servername_file")
+fi
+
+# Create a new vim server
+if [ "$(/usr/bin/gvim --serverlist | grep -i "^$vim_servername\$" | wc -l )" -lt 1 ]; then \
+      # my /usr/bin/vim is vim 7.4 and /usr/local/bin/vim is vim 8.0
+      # change the path to your gvim or vim   
+       /usr/bin/vim "--servername $vim_servername"
+fi
+
+use_this_servername="/usr/bin/gvim --servername $vim_servername" 
+
+# SVN variables of interest 
+# echo "{\$3} = ${3}" # [folder]/[file]  (revision [base rev number])
+# echo "{\$5} = ${5}" # [folder]/[file]  (working copy) 
+# echo "{\$6} = ${6}" # [folder]/.svn/text-base/[file].svn-base
+# echo "{\$7} = ${7}" # [folder]/[file]
+
+# Print information
+echo "Diff ${7} in a tab." 
+echo "  IS FILE  (right split) = ${7}" 
+echo "  WAS FILE (left split) = ${6}"
+echo "  DIFF HTML = $PWD/$(basename ${7}).diff.html"
+
+# open IS file in a new tab 
+$use_this_servername --remote-send ":tabe ${7} <CR>" 
+
+# open WAS file via vertical split in current tab, and diff these two files in tab  
+$use_this_servername --remote-send ":vert diffsplit ${6} <CR>" 
+
+# convert diffsplit into HTML 
+$use_this_servername --remote-send ":TOhtml <CR>" 
+
+# save diff.html output 
+$use_this_servername --remote-send ":saveas! ./$(basename ${7}).diff.html <CR>"
+
+# quit diff.html split window 
+$use_this_servername --remote-send ":q <CR>"
+
+echo ""
+echo "Remove $servername_file to open in a new gvim session"
+echo "      In terminal, rm -rf $servername_file" 
+echo "Otherwise, diff will open in current [Mac |g]vim session $vim_servername"
+echo ""
