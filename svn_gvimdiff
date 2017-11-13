@@ -1,9 +1,9 @@
 #!/bin/bash
 
+vim_path="/usr/bin/vim"
 epoch_time="$(date +%s)"
 vim_servername=""
 servername_file=diffserver.txt
-#epoch_file=epoch.txt
 
 # First time to create diffserver txt 
 if [ ! -f "$servername_file" ]; then \
@@ -21,7 +21,7 @@ fi
 if [ "$(/usr/bin/gvim --serverlist | grep -i "^$vim_servername\$" | wc -l )" -lt 1 ]; then \
       # my /usr/bin/vim is vim 7.4 and /usr/local/bin/vim is vim 8.0
       # change the path to your gvim or vim   
-       /usr/bin/vim "--servername $vim_servername"
+      "$vim_path" "--servername $vim_servername"
 fi
 
 use_this_servername="/usr/bin/gvim --servername $vim_servername" 
