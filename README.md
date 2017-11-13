@@ -17,21 +17,27 @@ In terminal:
 To put in your alias file: 
     
     hdiff(){
-         /usr/local/bin/vim -d $1 $2 \\
+         /usr/local/bin/vim -d $1 $2 \
           -c ":TOhtml" \
-          -c ":saveas! $(basename $2).diff.html" \\
-          -c ":qall!";
-}
+          -c ":saveas! $(basename $2).diff.html" \
+          -c ":qall!"; 
+    }
+
+
 Note: "\" is the end of line
 
 or put it in one line: 
 
-hdiff(){  /usr/local/bin/vim -d $1 $2 -c ":TOhtml" -c ":saveas! $(basename $2).diff.html" -c ":qall!"; }
+       hdiff(){  /usr/local/bin/vim -d $1 $2 -c ":TOhtml" -c ":saveas! $(basename $2).diff.html" -c ":qall!"; }
 
 ## To use gvim/vim diff instead of SVN diff
 File: svn_gvimdiff
-In terminal, 
+
+In terminal,
+
      chmod 755 /path/to/svn_gvimdiff 
+
+
 Next, either 
 
     Change your $HOME/.subversion/config file to point at gvim diff script 
